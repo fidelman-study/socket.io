@@ -23,8 +23,16 @@
   </form>
 
   <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
   <script>
-    const socket = window.io(); // by default to the host which is serving the page
+    $(function () {
+      const socket = window.io(); // by default to the host which is serving the page
+      $('form').submit(() => {
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+    });
   </script>
 
 </body>
